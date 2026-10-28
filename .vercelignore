@@ -1,0 +1,9 @@
+# Ficheiros que nunca devem ser servidos no site publicado
+.env
+.env.*
+/supabase/
+/utils/
+/node_modules/
+/package.json
+/package-lock.json
+/README.md

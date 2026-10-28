@@ -1,0 +1,5 @@
+# Barber Studio — versão de demonstração (PAP)
+# Esta cópia não deve aparecer em motores de busca.
+
+User-agent: *
+Disallow: /

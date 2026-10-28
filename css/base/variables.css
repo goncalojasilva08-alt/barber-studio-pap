@@ -1,0 +1,60 @@
+/* ==========================================================================
+   01. DESIGN TOKENS & VARIÁVEIS GLOBAIS
+   ========================================================================== */
+:root {
+    /* Cores Principais */
+    --color-black: #171717;
+    --color-black-pure: #0C0C0C;
+    --color-black-elevated: #1F1F1F;
+    --color-black-subtle: #292929;
+
+    --color-white: #FFFFFF;
+    --color-warm-white: #FFFFFF;
+    --color-surface-light: #DFD8CB;
+    --color-card-light: #F7F3EB;
+
+    --color-gray-light: #D6CEBE;
+    --color-gray-border-light: #CCC4B2;
+    --color-gray-border-dark: #262626;
+    --color-gray-border-dark-hover: #3D3D3D;
+
+    --color-gray-muted: #59544D;
+    --color-gray-subtle: #8A8A8A;
+    --color-gray-soft: #A3A3A3;
+
+    /* Destaque Ouro (Gold Atelier) */
+    --color-gold: #C9A227;
+    --color-gold-hover: #D8B036;
+    --color-gold-dark: #A38018;
+    --color-gold-subtle: rgba(201, 162, 39, 0.12);
+    --color-gold-glow: rgba(201, 162, 39, 0.25);
+
+    /* Tipografia */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Geist Mono', Consolas, monospace;
+
+    /* Escala de Tipografia */
+    --text-hero: clamp(2.5rem, 6.5vw, 5.5rem);
+    --text-h2: clamp(1.85rem, 4vw, 3.25rem);
+    --text-h3: clamp(1.2rem, 2.2vw, 1.75rem);
+    --text-body: 1rem;
+    --text-small: 0.875rem;
+    --text-micro: 0.75rem;
+
+    /* Layout & Espaçamento */
+    --container-max: 1240px;
+    --container-pad: clamp(1.25rem, 3.5vw, 3rem);
+    --radius-xs: 2px;
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-pill: 9999px;
+
+    /* Transições & Sombras */
+    --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-base: 250ms cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-slow: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+
+    --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.06);
+    --shadow-modal: 0 20px 40px rgba(0, 0, 0, 0.45);
+}

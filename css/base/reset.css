@@ -1,0 +1,184 @@
+/* ==========================================================================
+   02. RESET & REGRAS BASE GLOBAIS
+   ========================================================================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-black);
+    color: var(--color-black);
+}
+
+body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.6;
+    background-color: var(--color-black-pure);
+    color: var(--color-black);
+    overflow-x: hidden;
+}
+
+img,
+picture,
+svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+::selection {
+    background-color: var(--color-gold);
+    color: var(--color-black-pure);
+}
+
+.container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--container-pad);
+    padding-right: var(--container-pad);
+}
+
+.mono-tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-gray-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.mono-tag--gold {
+    color: var(--color-gold);
+}
+
+.mono-tag--muted {
+    color: var(--color-gray-subtle);
+}
+
+.icon {
+    width: 1.125rem;
+    height: 1.125rem;
+    display: inline-block;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+.icon-arrow {
+    transition: transform var(--transition-fast);
+}
+
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-on-scroll.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Sem o realce de toque do browser (o clarão azul-esverdeado ao tocar).
+   Vale para tudo: além de ligações e botões, há cartões, dias do calendário,
+   fotos, interruptores e campos que também reagem ao toque. */
+html {
+    -webkit-tap-highlight-color: transparent;
+}
+
+*,
+*::before,
+*::after {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Em troca, um toque dá sempre uma resposta visual discreta do próprio site */
+.service-select-card,
+.cal-day--available,
+.slot-btn,
+.mag-item__img-wrap,
+.apt-acc__head,
+.tab-link,
+.filter-btn,
+.history-period-btn,
+.social-pill,
+.demo-btn,
+.btn-social,
+.menu-toggle,
+.upload-dropzone {
+    transition-property: transform, opacity, background-color, border-color, color, box-shadow;
+    transition-duration: 180ms;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-select-card:active,
+.cal-day--available:active,
+.slot-btn:not(:disabled):active,
+.mag-item__img-wrap:active,
+.filter-btn:active,
+.history-period-btn:active,
+.social-pill:active,
+.demo-btn:active,
+.btn-social:active,
+.menu-toggle:active,
+.upload-dropzone:active {
+    transform: scale(0.97);
+}
+
+.apt-acc__head:active,
+.tab-link:active {
+    opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .service-select-card:active,
+    .cal-day--available:active,
+    .slot-btn:not(:disabled):active,
+    .mag-item__img-wrap:active,
+    .filter-btn:active,
+    .history-period-btn:active,
+    .social-pill:active,
+    .demo-btn:active,
+    .btn-social:active,
+    .menu-toggle:active,
+    .upload-dropzone:active {
+        transform: none;
+    }
+}

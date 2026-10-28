@@ -1,0 +1,25 @@
+{
+  "name": "barber-studio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "serve": "python -m http.server 3000",
+    "open": "start http://localhost:3000",
+    "dev": "python -m http.server 3000",
+    "seed": "node supabase/seed.js",
+    "confirm-users": "node supabase/confirm-users.js"
+  },
+  "keywords": [
+    "barbershop",
+    "static-site",
+    "supabase"
+  ],
+  "author": "Rui",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/server": "^1.4.1",
+    "@supabase/supabase-js": "^2.112.4",
+    "dotenv": "^17.4.2"
+  }
+}

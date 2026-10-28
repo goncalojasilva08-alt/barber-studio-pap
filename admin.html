@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0C0C0C">
+  <link rel="manifest" href="manifest.webmanifest">
+  <title>Painel de Gestão — Barber Studio</title>
+  <meta name="description"
+    content="Painel de controlo exclusivo de Rui para gestão de marcações, catálogo de serviços e galeria.">
+
+  <!-- Página privada: nunca deve aparecer nos motores de busca -->
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="portal-page">
+
+  <!-- Sticky Minimalist Header Universal -->
+  <header class="site-header" id="site-header">
+    <div class="container site-header__inner">
+      <!-- Marca / Logótipo -->
+      <a href="index.html" class="brand" aria-label="Página Inicial">
+        <img src="./assets/logo-128.webp" alt="AF Monograma" class="brand__logo" width="40" height="40">
+        <div class="brand__text-group">
+          <span class="brand__name">BARBER STUDIO</span>
+          <span class="brand__sub">SOLO BARBER</span>
+        </div>
+      </a>
+
+      <!-- Menu Desktop Universal -->
+      <nav class="site-nav" aria-label="Navegação principal">
+        <ul class="nav-list">
+          <li><a href="index.html#servicos" class="nav-link">Serviços</a></li>
+          <li><a href="index.html#experiencia" class="nav-link">A Experiência</a></li>
+          <li><a href="index.html#galeria" class="nav-link">Galeria</a></li>
+          <li><a href="index.html#sobre" class="nav-link">O Barbeiro</a></li>
+          <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <!-- Ações do Cabeçalho -->
+      <div class="header-actions">
+        <!-- Slot de Sessão (preenchido dinamicamente pelo nav.js) -->
+        <div id="nav-auth-slot"></div>
+
+        <!-- Botão Principal de Agendamento -->
+        <a href="marcar.html" class="btn btn--gold btn--sm">
+          <span class="btn-text-desktop">MARCAR AGORA</span>
+          <svg class="icon icon-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3.333 8h9.334M8.667 4l4 4-4 4" />
+          </svg>
+        </a>
+
+        <!-- Botão Menu Mobile -->
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-label="Menu">
+          <span class="menu-toggle__bar"></span>
+          <span class="menu-toggle__bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Gaveta de Navegação Mobile -->
+    <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+      <div class="mobile-drawer__inner">
+        <span class="mono-tag mono-tag--muted">NAVEGAÇÃO DO ATELIER</span>
+        <ul class="mobile-nav-list">
+          <li><a href="index.html#servicos" class="mobile-nav-link"><span>01</span> Serviços & Preços</a></li>
+          <li><a href="index.html#experiencia" class="mobile-nav-link"><span>02</span> A Experiência</a></li>
+          <li><a href="index.html#galeria" class="mobile-nav-link"><span>03</span> Galeria Lookbook</a></li>
+          <li><a href="index.html#sobre" class="mobile-nav-link"><span>04</span> O Barbeiro</a></li>
+          <li><a href="index.html#contacto" class="mobile-nav-link"><span>05</span> Contacto & Localização</a></li>
+        </ul>
+
+        <div class="mobile-drawer__footer">
+          <!-- Ações de Conta no Mobile (preenchido dinamicamente) -->
+          <div id="drawer-auth-slot"></div>
+
+          <a href="marcar.html" class="btn btn--gold btn--full">MARCAR AGENDAMENTO</a>
+
+          <div class="mobile-drawer__meta">
+            <a href="tel:+351900000000" class="meta-item">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              <span>+351 900 000 000</span>
+            </a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="meta-item">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+              </svg>
+              <span>@barberstudio.demo</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="portal-container container">
+    <!-- Admin Topbar -->
+    <div class="portal-topbar">
+      <div class="portal-welcome">
+        <span class="mono-tag mono-tag--gold">PAINEL DE CONTROLO EXCLUSIVO</span>
+        <h1 class="portal-heading">GESTÃO DO ATELIER.</h1>
+        <p class="section-subtitle">Marcações, serviços e fotos do teu atelier num só sítio.
+        </p>
+      </div>
+    </div>
+
+    <!-- Admin KPI Stat Cards -->
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-head">
+          <span class="kpi-title">MARCAÇÕES PENDENTES</span>
+          <span class="badge-status badge-status--pending">AÇÃO</span>
+        </div>
+        <span class="kpi-value" id="kpi-pending" style="color: #d4a017;">0</span>
+        <span class="kpi-sub">A aguardar confirmação</span>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-head">
+          <span class="kpi-title">MARCAÇÕES HOJE</span>
+          <span class="badge-status badge-status--confirmed">AGENDA</span>
+        </div>
+        <span class="kpi-value" id="kpi-today" style="color: #22c55e;">0</span>
+        <span class="kpi-sub">Clientes agendados para hoje</span>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-head">
+          <span class="kpi-title">CORTES REALIZADOS</span>
+          <span class="badge-status badge-status--completed">TOTAL</span>
+        </div>
+        <span class="kpi-value" id="kpi-completed" style="color: var(--color-gold-hover);">128</span>
+        <span class="kpi-sub">Histórico acumulado do atelier</span>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-head">
+          <span class="kpi-title">FATURAÇÃO ESTIMADA</span>
+          <span class="mono-tag mono-tag--muted">EUR</span>
+        </div>
+        <span class="kpi-value" id="kpi-revenue">€2.480</span>
+        <span class="kpi-sub">Volume de serviços concluídos</span>
+      </div>
+    </section>
+
+    <!-- Tab Navigation -->
+    <nav class="tab-nav" aria-label="Navegação da área de administração">
+      <button type="button" class="tab-link is-active" data-tab="tab-admin-appointments">
+        <span>01</span> MARCAÇÕES
+      </button>
+      <button type="button" class="tab-link" data-tab="tab-admin-services">
+        <span>02</span> SERVIÇOS
+      </button>
+      <button type="button" class="tab-link" data-tab="tab-admin-gallery">
+        <span>03</span> FOTOS
+      </button>
+      <button type="button" class="tab-link" data-tab="tab-admin-schedule">
+        <span>04</span> HORÁRIO
+      </button>
+    </nav>
+
+    <!-- TAB 1: MARCAÇÕES (blocos expansíveis) -->
+    <div class="tab-content-panel is-active" id="tab-admin-appointments">
+      <!-- Avisos: marcações que os clientes cancelaram e o barbeiro ainda não viu -->
+      <div id="admin-cancel-notices"></div>
+
+      <div class="section-header__tag">
+        <span class="mono-tag">POR TRATAR</span>
+      </div>
+      <div id="admin-open-list">
+        <span class="mono-tag mono-tag--muted">A CARREGAR...</span>
+      </div>
+
+      <div id="admin-history" style="margin-top: 2rem; display: flex; flex-direction: column; gap: 0.75rem;"></div>
+    </div>
+
+    <!-- TAB 2: SERVIÇOS (blocos expansíveis) -->
+    <div class="tab-content-panel" id="tab-admin-services">
+      <div class="admin-list-head">
+        <div class="section-header__tag" style="margin-bottom: 0;">
+          <span class="mono-tag">CATÁLOGO DE SERVIÇOS</span>
+        </div>
+        <button type="button" class="btn btn--gold btn--sm" id="add-service-btn-tab">
+          <span>+ NOVO SERVIÇO</span>
+        </button>
+      </div>
+      <div id="admin-services-list">
+        <span class="mono-tag mono-tag--muted">A CARREGAR...</span>
+      </div>
+    </div>
+
+    <!-- TAB 4: GALLERY MANAGEMENT -->
+    <div class="tab-content-panel" id="tab-admin-gallery">
+      <div class="admin-card">
+        <div class="admin-card-head">
+          <div>
+            <h2 class="section-title" style="font-size: 1.35rem; margin-bottom: 0.25rem;">GALERIA DO SITE</h2>
+            <p class="section-subtitle" style="font-size: 0.8125rem;">As fotografias dos teus cortes que aparecem na página inicial.</p>
+          </div>
+          <button type="button" class="btn btn--gold btn--sm" id="add-photo-btn-tab">
+            <span>+ NOVA FOTO</span>
+          </button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem;"
+          id="admin-gallery-grid">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+      <div class="admin-card" style="margin-top: 1.5rem;">
+        <div class="admin-card-head">
+          <div>
+            <h2 class="section-title" style="font-size: 1.35rem; margin-bottom: 0.25rem;">A TUA FOTO</h2>
+            <p class="section-subtitle" style="font-size: 0.8125rem;">
+              A fotografia que aparece na secção "O Barbeiro" da página inicial.
+            </p>
+          </div>
+        </div>
+
+        <div style="max-width: 560px; margin: 1.5rem auto 0;">
+          <div class="form-group">
+            <label class="form-label" style="text-align: center; display: block; margin-bottom: 0.75rem;">FOTOGRAFIA OFICIAL DO BARBEIRO</label>
+            <input type="file" id="site-about-portrait-input" accept="image/*" style="display: none;">
+            <input type="hidden" id="site-about-portrait" value="">
+
+            <div class="upload-dropzone" id="site-about-portrait-dropzone" tabindex="0" title="Arrasta, clica ou prime CTRL+V para colar">
+              <div class="upload-dropzone__idle" id="about-portrait-dropzone-idle">
+                <div class="upload-dropzone__icon">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="17 8 12 3 7 8" />
+                    <line x1="12" y1="3" x2="12" y2="15" />
+                  </svg>
+                </div>
+                <p class="upload-dropzone__text">
+                  <strong>Arrasta a tua fotografia</strong> ou <span class="upload-dropzone__link">escolhe do computador</span>
+                </p>
+                <span class="mono-tag mono-tag--muted" style="margin-top: 0.5rem; display: inline-block;">Recomendado: Retrato vertical (ex: 900×1200px)</span>
+              </div>
+
+              <div class="upload-dropzone__loading" id="about-portrait-dropzone-loading" style="display: none;">
+                <span class="mono-tag mono-tag--gold">A GUARDAR NO SUPABASE STORAGE...</span>
+              </div>
+
+              <div class="upload-dropzone__preview" id="about-portrait-dropzone-preview" style="display: none; flex-direction: column; align-items: center; gap: 1rem;">
+                <div style="width: 200px; height: 260px; border-radius: var(--radius-md); overflow: hidden; border: 2px solid var(--color-gold); box-shadow: 0 8px 24px rgba(0,0,0,0.5);">
+                  <img id="about-portrait-dropzone-preview-img" src="" alt="Pré-visualização da Foto do Barbeiro" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="upload-dropzone__preview-actions">
+                  <span class="mono-tag mono-tag--gold">FOTO PRONTA</span>
+                  <button type="button" class="btn btn--outline btn--sm" id="remove-about-portrait-btn" style="color: #ef4444; border-color: rgba(239, 68, 68, 0.4); padding: 0.35rem 0.6rem; font-size: 0.65rem;">
+                    TROCAR FOTO
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--color-gray-border-dark);">
+            <button type="button" class="btn btn--outline" id="reset-barber-photo-btn">REPOR FOTO PADRÃO</button>
+            <button type="button" class="btn btn--gold" id="save-barber-photo-btn">
+              <span>GUARDAR FOTO</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: HORÁRIO E INDISPONIBILIDADES (blocos expansíveis) -->
+    <div class="tab-content-panel" id="tab-admin-schedule">
+      <div id="admin-bookings-switch"></div>
+
+      <div class="section-header__tag">
+        <span class="mono-tag">HORÁRIO SEMANAL</span>
+      </div>
+      <div id="admin-hours-list">
+        <span class="mono-tag mono-tag--muted">A CARREGAR...</span>
+      </div>
+
+      <div class="admin-list-head" style="margin-top: 2.5rem;">
+        <div class="section-header__tag" style="margin-bottom: 0;">
+          <span class="mono-tag">DIAS BLOQUEADOS</span>
+        </div>
+        <button type="button" class="btn btn--gold btn--sm" id="add-timeoff-btn">
+          <span>+ BLOQUEAR DIAS</span>
+        </button>
+      </div>
+      <div id="admin-timeoff-list"></div>
+      <div id="admin-timeoff-past" style="margin-top: 0.75rem;"></div>
+
+      <div class="section-header__tag" style="margin-top: 2.5rem;">
+        <span class="mono-tag">A TUA CONTA</span>
+      </div>
+      <div class="apt-acc history-acc" id="admin-account-acc">
+        <button type="button" class="apt-acc__head history-acc__head" id="admin-account-toggle" aria-expanded="false">
+          <span class="history-acc__title">MUDAR PASSWORD</span>
+          <span></span>
+          <svg class="icon apt-acc__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+        </button>
+        <div class="apt-acc__panel">
+          <div class="apt-acc__inner">
+            <form id="admin-pw-form" class="sched-form">
+              <p class="sched-hint" style="margin-top: 0;">A password serve para entrares com o teu email ou nome. Se entras com a Google, continua a funcionar igual.</p>
+              <div class="form-group">
+                <label class="form-label" for="admin-new-pw">NOVA PASSWORD</label>
+                <input type="password" id="admin-new-pw" class="form-input" placeholder="8+ caracteres, letras e números" minlength="8" autocomplete="new-password" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="admin-confirm-pw">CONFIRMAR NOVA PASSWORD</label>
+                <input type="password" id="admin-confirm-pw" class="form-input" placeholder="••••••••" autocomplete="new-password" required>
+              </div>
+              <button type="submit" class="btn btn--gold btn--sm" id="admin-pw-btn" style="align-self: flex-start;">ALTERAR PASSWORD</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</main>
+
+  <!-- MODAL: BLOQUEAR DIAS -->
+  <div class="modal-backdrop" id="timeoff-modal" aria-hidden="true" role="dialog">
+    <div class="modal-card" style="max-width: 520px;">
+      <div class="modal-header">
+        <h2 class="modal-title">BLOQUEAR DIAS</h2>
+        <button type="button" class="modal-close-btn" id="close-timeoff-modal" aria-label="Fechar">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <form id="timeoff-form" class="booking-form">
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="off-start">DE</label>
+            <input type="date" id="off-start" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="off-end">ATÉ</label>
+            <input type="date" id="off-end" class="form-input" required>
+          </div>
+        </div>
+
+        <label class="switch-label" style="margin: 0.5rem 0 1rem;">
+          <input type="checkbox" class="switch-input" id="off-all-day" checked>
+          <span class="switch-slider"></span>
+          <span style="font-size: 0.75rem; font-family: var(--font-mono);">O DIA INTEIRO</span>
+        </label>
+
+        <div class="form-grid-2" id="off-times" style="display: none;">
+          <div class="form-group">
+            <label class="form-label" for="off-start-time">DAS</label>
+            <input type="time" id="off-start-time" class="form-input" step="900">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="off-end-time">ÀS</label>
+            <input type="time" id="off-end-time" class="form-input" step="900">
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1rem;">
+          <button type="button" class="btn btn--outline" id="abort-timeoff-btn">CANCELAR</button>
+          <button type="submit" class="btn btn--gold" id="save-timeoff-btn">BLOQUEAR</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD / EDIT SERVICE -->
+  <div class="modal-backdrop" id="service-modal" aria-hidden="true" role="dialog">
+    <div class="modal-card" style="max-width: 520px;">
+      <div class="modal-header">
+        <h2 class="modal-title" id="service-modal-title">NOVO SERVIÇO</h2>
+        <button type="button" class="modal-close-btn" id="close-service-modal" aria-label="Fechar">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <form id="service-form" class="booking-form">
+        <input type="hidden" id="service-edit-id">
+        <div class="form-group">
+          <label class="form-label" for="srv-name">NOME DO SERVIÇO</label>
+          <input type="text" id="srv-name" class="form-input" placeholder="Ex: Fade & Barboterapia Deluxe" required>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="srv-cat">CATEGORIA</label>
+            <input type="text" id="srv-cat" class="form-input" placeholder="Ex: CORTE / BARBA" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="srv-price">PREÇO (€)</label>
+            <input type="number" id="srv-price" class="form-input" placeholder="25" min="1" step="1" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="srv-duration">DURAÇÃO ESTIMADA</label>
+          <input type="text" id="srv-duration" class="form-input" placeholder="Ex: 50 min" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="srv-desc">DESCRIÇÃO DETALHADA</label>
+          <textarea id="srv-desc" class="form-input" style="height: 80px; resize: vertical;"
+            placeholder="Descrição para os clientes no website..." required></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1rem;">
+          <button type="button" class="btn btn--outline" id="abort-service-btn">CANCELAR</button>
+          <button type="submit" class="btn btn--gold">GUARDAR SERVIÇO</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD / EDIT PHOTO COM DROPZONE, ARRASTAR E CTRL+V -->
+  <div class="modal-backdrop" id="photo-modal" aria-hidden="true" role="dialog">
+    <div class="modal-card" style="max-width: 520px;">
+      <div class="modal-header">
+        <h2 class="modal-title" id="photo-modal-title">NOVA FOTOGRAFIA</h2>
+        <button type="button" class="modal-close-btn" id="close-photo-modal" aria-label="Fechar">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <form id="photo-form" class="booking-form">
+        <input type="hidden" id="photo-edit-id">
+
+        <div class="form-group">
+          <label class="form-label" for="photo-title">TÍTULO DO CORTE / FOTO</label>
+          <input type="text" id="photo-title" class="form-input" placeholder="Ex: Low Skin Fade & Texture" required>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="photo-cat">CATEGORIA</label>
+            <select id="photo-cat" class="form-select" required>
+              <option value="cortes">CORTES</option>
+              <option value="barba">BARBA</option>
+              <option value="detalhes">DETALHES</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="photo-layout">PROPORÇÃO</label>
+            <select id="photo-layout" class="form-select" required>
+              <option value="standard">Padrão</option>
+              <option value="tall">Vertical Alta (Tall)</option>
+              <option value="wide">Horizontal Larga (Wide)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- ÁREA INTELIGENTE DE UPLOAD (CLIQUE, DRAG & DROP E CTRL+V) -->
+        <div class="form-group">
+          <label class="form-label">IMAGEM DO CORTE</label>
+          <input type="file" id="photo-file-input" accept="image/*" style="display: none;">
+          <input type="hidden" id="photo-url" required>
+
+          <div class="upload-dropzone" id="photo-dropzone" tabindex="0"
+            title="Arrasta, clica ou prime CTRL+V para colar">
+            <!-- Estado Inicial -->
+            <div class="upload-dropzone__idle" id="dropzone-idle">
+              <div class="upload-dropzone__icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="17 8 12 3 7 8" />
+                  <line x1="12" y1="3" x2="12" y2="15" />
+                </svg>
+              </div>
+              <p class="upload-dropzone__text">
+                <strong>Arrasta uma imagem</strong> ou <span class="upload-dropzone__link">escolhe do computador</span>
+              </p>
+            </div>
+
+            <!-- Estado de Carregamento -->
+            <div class="upload-dropzone__loading" id="dropzone-loading" style="display: none;">
+              <span class="mono-tag mono-tag--gold">A GUARDAR NO SUPABASE STORAGE...</span>
+            </div>
+
+            <!-- Estado com Pré-visualização -->
+            <div class="upload-dropzone__preview" id="dropzone-preview" style="display: none;">
+              <img id="dropzone-preview-img" src="" alt="Pré-visualização">
+              <div class="upload-dropzone__preview-actions">
+                <span class="mono-tag mono-tag--gold">IMAGEM PRONTA</span>
+                <button type="button" class="btn btn--outline btn--sm" id="remove-uploaded-photo-btn"
+                  style="color: #ef4444; border-color: rgba(239, 68, 68, 0.4); padding: 0.35rem 0.6rem; font-size: 0.65rem;">
+                  TROCAR IMAGEM
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="photo-desc">LEGENDA / DETALHE DO CORTE</label>
+          <input type="text" id="photo-desc" class="form-input" placeholder="Ex: Finalização com pó texturizante mate."
+            required>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1rem;">
+          <button type="button" class="btn btn--outline" id="abort-photo-btn">CANCELAR</button>
+          <button type="submit" class="btn btn--gold" id="save-photo-submit-btn">GUARDAR FOTO</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer site-footer--slim">
+    <div class="container footer-bottom">
+      <p class="copyright">© 2026 Barber Studio</p>
+      <a href="politica-privacidade.html" class="mono-tag">POLÍTICA DE PRIVACIDADE</a>
+    </div>
+  </footer>
+
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <script src="js/components/loader.js"></script>
+
+  <script type="module" src="js/pages/adminDashboard.js"></script>
+  <script type="module" src="js/components/nav.js"></script>
+  <script type="module" src="js/components/privacyNotice.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,428 @@
+/* ==========================================================================
+   05. MODAIS & LIGHTBOX
+   ========================================================================== */
+.modal-backdrop,
+.lightbox-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-base);
+}
+
+.modal-backdrop.is-active,
+.lightbox-backdrop.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-card {
+    background-color: var(--color-black-pure);
+    border: 1px solid var(--color-gray-border-dark);
+    border-radius: var(--radius-md);
+    width: 100%;
+    max-width: 560px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 2rem;
+    box-shadow: var(--shadow-modal);
+    transform: translateY(20px) scale(0.98);
+    transition: transform var(--transition-base);
+    color: var(--color-white);
+}
+
+.modal-backdrop.is-active .modal-card {
+    transform: translateY(0) scale(1);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-gray-border-dark);
+    margin-bottom: 1.5rem;
+}
+
+.modal-title {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: var(--color-white);
+}
+
+.modal-close-btn,
+.lightbox-close {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gray-subtle);
+    border: 1px solid var(--color-gray-border-dark);
+    transition: all var(--transition-fast);
+}
+
+.modal-close-btn:hover,
+.lightbox-close:hover {
+    color: var(--color-white);
+    border-color: var(--color-white);
+    background-color: var(--color-black-elevated);
+}
+
+/* Lightbox Lookbook */
+.lightbox-content {
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.lightbox-img {
+    max-height: 75vh;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-gray-border-dark);
+}
+
+.lightbox-caption {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.lightbox-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-white);
+}
+
+.lightbox-desc {
+    font-size: var(--text-small);
+    color: var(--color-gray-soft);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -3rem;
+    right: 0;
+}
+/* --------------------------------------------------------------------------
+   Lightbox em cartas: desliza-se para os lados para ver mais fotos
+   -------------------------------------------------------------------------- */
+.lightbox-backdrop {
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    gap: 1rem;
+    transition: opacity 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lb-topbar {
+    width: 100%;
+    max-width: 640px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.25rem;
+}
+
+.lightbox-backdrop .lightbox-close {
+    position: static;
+}
+
+.lb-track {
+    --lb-slide: min(78vw, 440px);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem calc((100% - var(--lb-slide)) / 2);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.lb-track::-webkit-scrollbar {
+    display: none;
+}
+
+.lb-slide {
+    flex: 0 0 var(--lb-slide);
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    margin: 0;
+    opacity: 0.4;
+    transform: scale(0.9);
+    transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1), opacity 320ms ease;
+    cursor: pointer;
+}
+
+.lb-slide.is-current {
+    opacity: 1;
+    transform: scale(1);
+    cursor: default;
+}
+
+.lb-card {
+    background-color: var(--color-black-pure);
+    border: 1px solid var(--color-gray-border-dark);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+    transition: border-color 320ms ease;
+}
+
+.lb-slide.is-current .lb-card {
+    border-color: rgba(201, 162, 39, 0.4);
+}
+
+.lb-img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    max-height: 62vh;
+    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.lb-caption {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 1rem 1.25rem 1.25rem;
+    text-align: left;
+}
+
+/* A carta atual entra com um ligeiro crescimento quando o ecrã abre */
+.lightbox-backdrop.is-active .lb-slide.is-current .lb-card {
+    animation: lb-card-in 480ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes lb-card-in {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.lb-nav {
+    position: absolute;
+    top: 50%;
+    width: 44px;
+    height: 44px;
+    margin-top: -22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--color-gray-border-dark-hover);
+    background-color: rgba(12, 12, 12, 0.7);
+    color: var(--color-white);
+    transition: background-color 200ms ease, border-color 200ms ease, opacity 200ms ease, transform 200ms ease;
+}
+
+.lb-nav--prev {
+    left: max(1rem, calc(50% - 300px));
+}
+
+.lb-nav--next {
+    right: max(1rem, calc(50% - 300px));
+}
+
+.lb-nav:hover:not(:disabled) {
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+}
+
+.lb-nav:active:not(:disabled) {
+    transform: scale(0.92);
+}
+
+.lb-nav:disabled {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.lb-dots {
+    display: flex;
+    gap: 0.4rem;
+    min-height: 6px;
+}
+
+.lb-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.25);
+    transition: width 320ms cubic-bezier(0.16, 1, 0.3, 1), background-color 320ms ease;
+}
+
+.lb-dots span.is-current {
+    width: 20px;
+    background-color: var(--color-gold);
+}
+
+.lb-single .lb-nav,
+.lb-single .lb-dots {
+    display: none;
+}
+
+/* Em ecrãs de toque desliza-se com o dedo: as setas só atrapalham */
+@media (hover: none), (max-width: 700px) {
+    .lb-nav {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lb-slide,
+    .lb-card,
+    .lb-dots span {
+        transition: none;
+    }
+
+    .lightbox-backdrop.is-active .lb-slide.is-current .lb-card {
+        animation: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Ajuste de fotografia (recorte antes do envio)
+   -------------------------------------------------------------------------- */
+.cropper-modal {
+    z-index: 1100;
+}
+
+.cropper-card {
+    max-width: 420px;
+    padding: 1.5rem;
+}
+
+.cropper-card .modal-header {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0.25rem;
+}
+
+.cropper-hint {
+    font-size: 0.8125rem;
+    color: var(--color-gray-soft);
+    margin-bottom: 1rem;
+}
+
+.cropper-frame {
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(201, 162, 39, 0.45);
+    background-color: #000;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+}
+
+.cropper-frame:active {
+    cursor: grabbing;
+}
+
+.cropper-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: none;
+    transform-origin: 0 0;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* Zona central que aparece sempre nos mosaicos da página inicial */
+.cropper-safe {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 64%;
+    transform: translateY(-50%);
+    border-top: 1px dashed rgba(255, 255, 255, 0.55);
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.55);
+    pointer-events: none;
+}
+
+.cropper-safe span {
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    transform: translate(-50%, -0.35rem);
+    padding: 0.15rem 0.45rem;
+    border-radius: var(--radius-xs);
+    background-color: rgba(0, 0, 0, 0.6);
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.cropper-zoom {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.25rem 0;
+    color: var(--color-gray-subtle);
+}
+
+.cropper-zoom .icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.cropper-zoom input[type="range"] {
+    flex: 1;
+    height: 28px;
+    background: transparent;
+    accent-color: var(--color-gold);
+    cursor: pointer;
+}
+
+.cropper-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.cropper-actions .btn {
+    flex: 1;
+}
+
+/* Com a galeria aberta, os avisos vão para o fundo para não taparem o contador e o botão de fechar */
+body:has(.lightbox-backdrop.is-active) .toast-container {
+    top: auto;
+    bottom: 1.25rem;
+}

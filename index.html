@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0C0C0C">
+  <link rel="manifest" href="manifest.webmanifest">
+  <title>BARBER STUDIO — Barbearia & Visagismo Masculino | Precision Haircuts</title>
+  <meta name="description"
+    content="Atelier de barbearia solo por Rui. Cortes de precisão, barboterapia, visagismo e atendimento 100% individualizado. Marca o teu horário online.">
+  <meta name="keywords"
+    content="barbearia, barbeiro, barber studio, corte masculino, fade, barba, visagismo, barboterapia, agendamento">
+  <meta name="author" content="Barber Studio">
+
+  <!-- Open Graph / Meta Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="BARBER STUDIO — Barbearia & Visagismo Masculino">
+  <meta property="og:description"
+    content="Mais do que um corte. Uma experiência pensada ao detalhe por Rui. Marca o teu corte exclusivo.">
+  <meta property="og:image" content="https://barber-studio.vercel.app/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://barber-studio.vercel.app/">
+  <meta property="twitter:card" content="summary_large_image">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Schema.org LocalBusiness Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BarberShop",
+    "name": "Barber Studio",
+    "image": "https://barber-studio.vercel.app/assets/og-image.jpg",
+    "description": "Atelier de corte de cabelo masculino e barba com atendimento exclusivo e visagismo por Rui.",
+    "priceRange": "€€",
+    "currenciesAccepted": "EUR",
+    "paymentAccepted": "Cash, MB Way, Multibanco, Cartão",
+    "openingHours": "Mo-Fr 17:30-21:00, Sa 09:00-18:00, Su 17:00-21:00",
+    "telephone": "+351 900 000 000",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Madeira",
+      "addressCountry": "PT"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <!-- Sticky Minimalist Header Universal -->
+  <header class="site-header" id="site-header">
+    <div class="container site-header__inner">
+      <!-- Marca / Logótipo -->
+      <a href="index.html" class="brand" aria-label="Página Inicial">
+        <img src="./assets/logo-128.webp" alt="AF Monograma" class="brand__logo" width="40" height="40">
+        <div class="brand__text-group">
+          <span class="brand__name">BARBER STUDIO</span>
+          <span class="brand__sub">SOLO BARBER</span>
+        </div>
+      </a>
+
+      <!-- Menu Desktop Universal -->
+      <nav class="site-nav" aria-label="Navegação principal">
+        <ul class="nav-list">
+          <li><a href="index.html#servicos" class="nav-link">Serviços</a></li>
+          <li><a href="index.html#experiencia" class="nav-link">A Experiência</a></li>
+          <li><a href="index.html#galeria" class="nav-link">Galeria</a></li>
+          <li><a href="index.html#sobre" class="nav-link">O Barbeiro</a></li>
+          <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <!-- Ações do Cabeçalho -->
+      <div class="header-actions">
+        <!-- Slot de Sessão (preenchido dinamicamente pelo nav.js) -->
+        <div id="nav-auth-slot"></div>
+
+        <!-- Botão Principal de Agendamento -->
+        <a href="marcar.html" class="btn btn--gold btn--sm">
+          <span class="btn-text-desktop">MARCAR AGORA</span>
+          <svg class="icon icon-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3.333 8h9.334M8.667 4l4 4-4 4" />
+          </svg>
+        </a>
+
+        <!-- Botão Menu Mobile -->
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-label="Menu">
+          <span class="menu-toggle__bar"></span>
+          <span class="menu-toggle__bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Gaveta de Navegação Mobile -->
+    <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+      <div class="mobile-drawer__inner">
+        <span class="mono-tag mono-tag--muted">NAVEGAÇÃO DO ATELIER</span>
+        <ul class="mobile-nav-list">
+          <li><a href="index.html#servicos" class="mobile-nav-link"><span>01</span> Serviços & Preços</a></li>
+          <li><a href="index.html#experiencia" class="mobile-nav-link"><span>02</span> A Experiência</a></li>
+          <li><a href="index.html#galeria" class="mobile-nav-link"><span>03</span> Galeria Lookbook</a></li>
+          <li><a href="index.html#sobre" class="mobile-nav-link"><span>04</span> O Barbeiro</a></li>
+          <li><a href="index.html#contacto" class="mobile-nav-link"><span>05</span> Contacto & Localização</a></li>
+        </ul>
+
+        <div class="mobile-drawer__footer">
+          <!-- Ações de Conta no Mobile (preenchido dinamicamente) -->
+          <div id="drawer-auth-slot"></div>
+
+          <a href="marcar.html" class="btn btn--gold btn--full">MARCAR AGENDAMENTO</a>
+
+          <div class="mobile-drawer__meta">
+            <a href="tel:+351900000000" class="meta-item">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              <span>+351 900 000 000</span>
+            </a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="meta-item">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+              </svg>
+              <span>@barberstudio.demo</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-label-group">
+            <span class="mono-tag">SOLO BARBER ATELIER · POR RUI</span>
+            <div class="hero-dot-separator"></div>
+            <span class="mono-tag mono-tag--gold">ATENDIMENTO EXCLUSIVO</span>
+          </div>
+
+          <h1 class="hero-title">
+            PRECISÃO<br>
+            EM CADA<br>
+            CORTE.
+          </h1>
+          <div class="hero-cta-group">
+            <a href="marcar.html" class="btn btn--gold">
+              <span>MARCAR AGORA</span>
+              <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3.333 8h9.334M8.667 4l4 4-4 4" />
+              </svg>
+            </a>
+            <a href="#servicos" class="btn btn--outline">
+              <span>VER SERVIÇOS</span>
+            </a>
+          </div>
+          
+
+          <p class="hero-lead">
+            Mais do que um corte. Uma experiência pensada ao detalhe, onde técnica cirúrgica, visagismo masculino e
+            calma se unem para elevar a tua identidade.
+          </p>
+
+          <div class="hero-proof">
+            <div class="proof-item">
+              <span class="proof-number">1-ON-1</span>
+              <span class="proof-desc">Espaço 100% privado</span>
+            </div>
+            <div class="proof-divider"></div>
+            <div class="proof-item">
+              <span class="proof-number">100%</span>
+              <span class="proof-desc">Foco na tua fisionomia</span>
+            </div>
+            <div class="proof-divider"></div>
+            <div class="proof-item">
+              <span class="proof-number">5.0 ★</span>
+              <span class="proof-desc">Satisfação máxima</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="editorial-frame">
+            <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1200&q=85"
+              alt="Rui a executar corte masculino de alta precisão com tesoura e pente" class="editorial-img"
+              width="600" height="750" loading="eager">
+            <div class="editorial-badge">
+              <img src="./assets/logo-128.webp" alt="AF Logo" class="editorial-badge__logo" width="32" height="32">
+              <div class="editorial-badge__text">
+                <span class="badge-title">BARBER STUDIO</span>
+                <span class="badge-sub">SIGNATURE CRAFT</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE / 4 PILLARS -->
+    <section class="section section--light" id="experiencia">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header__tag">
+            <span class="mono-tag">01 / A FILOSOFIA</span>
+          </div>
+          <h2 class="section-title">O PADRÃO DO ATELIER.</h2>
+          <p class="section-subtitle">
+            Quatro princípios que garantem um corte de excelência e uma experiência relaxante e consistente.
+          </p>
+        </div>
+
+        <div class="pillars-grid">
+          <article class="pillar-item">
+            <div class="pillar-number">01</div>
+            <h3 class="pillar-title">PRECISÃO</h3>
+            <p class="pillar-text">
+              Sem pressas e ao pormenor. Cada linha, degrade e textura são medidos à milímetro para que o teu cabelo e barba fiquem impecáveis de qualquer ângulo.
+            </p>
+            <div class="pillar-line"></div>
+          </article>
+
+          <article class="pillar-item">
+            <div class="pillar-number">02</div>
+            <h3 class="pillar-title">VISAGISMO</h3>
+            <p class="pillar-text">
+              Esquece os cortes em série. Olhamos para o teu formato de rosto e tipo de cabelo para descobrirmos o estilo que assenta mesmo bem na tua identidade.
+            </p>
+            <div class="pillar-line"></div>
+          </article>
+
+          <article class="pillar-item">
+            <div class="pillar-number">03</div>
+            <h3 class="pillar-title">QUALIDADE</h3>
+            <p class="pillar-text">
+              Uso apenas produtos de topo e material esterilizado e seguro para garantir que tens o melhor tratamento do início ao fim.
+            </p>
+            <div class="pillar-line"></div>
+          </article>
+
+          <article class="pillar-item">
+            <div class="pillar-number">04</div>
+            <h3 class="pillar-title">EXCLUSIVIDADE</h3>
+            <p class="pillar-text">
+              Atendimento privado e à porta fechada. Quando estás aqui, o estúdio é só teu à hora marcada.
+            </p>
+            <div class="pillar-line"></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section section--dark" id="servicos">
+      <div class="container">
+        <div class="section-header section-header--dark">
+          <div class="section-header__tag">
+            <span class="mono-tag mono-tag--gold">02 / OS NOSSOS SERVIÇOS</span>
+          </div>
+          <h2 class="section-title section-title--light">PRECISION SERVICES</h2>
+          <p class="section-subtitle section-subtitle--muted">
+            Transparência, detalhe e técnica refinada em cada serviço do menu.
+          </p>
+        </div>
+
+        <!-- Rendered dynamically by public.js com links diretos para marcar.html -->
+        <div class="services-list"></div>
+
+        <div class="services-footer">
+          <p class="services-footer__note">
+            <span class="mono-tag mono-tag--gold">DICA:</span> Tens dúvidas sobre o corte ideal para a tua fisionomia? A
+            consultoria visagista está incluída em todos os serviços.
+          </p>
+          <a href="marcar.html" class="btn btn--gold">
+            <span>AGENDAR O MEU CORTE</span>
+            <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M3.333 8h9.334M8.667 4l4 4-4 4" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY (Lookbook) -->
+    <section class="section section--light" id="galeria">
+      <div class="container">
+        <div class="gallery-head-flex">
+          <div class="section-header" style="margin-bottom: 0;">
+            <div class="section-header__tag">
+              <span class="mono-tag">03 / O LOOKBOOK</span>
+            </div>
+            <h2 class="section-title">EDITORIAL LOOKBOOK.</h2>
+          </div>
+
+          <nav class="gallery-filters" aria-label="Filtro da galeria">
+            <button type="button" class="filter-btn is-active" data-filter="all">TODOS</button>
+            <button type="button" class="filter-btn" data-filter="cortes">CORTES & FADES</button>
+            <button type="button" class="filter-btn" data-filter="barba">BARBA</button>
+            <button type="button" class="filter-btn" data-filter="detalhes">DETALHES</button>
+          </nav>
+        </div>
+
+        <div class="magazine-grid" id="magazine-grid"></div>
+        <div class="gallery-more" id="gallery-more"></div>
+      </div>
+    </section>
+
+    <!-- ABOUT THE BARBER -->
+    <section class="section section--dark" id="sobre">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-portrait-wrap">
+            <div class="about-portrait-frame">
+              <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=900&q=85"
+                alt="Rui - Barbeiro e Fundador do Atelier" class="about-portrait-img" loading="lazy" id="barber-portrait-img">
+              <div class="about-logo-overlay">
+                <img src="./assets/logo-192.webp" alt="AF Monograma" width="64" height="64">
+              </div>
+            </div>
+            <div class="about-credentials">
+              <div class="credential-item">
+                <span class="mono-tag mono-tag--gold">ESPECIALIZAÇÃO</span>
+                <span class="cred-val" id="barber-specialty-1">Visagismo & Skin Fade</span>
+              </div>
+              <div class="credential-item">
+                <span class="mono-tag mono-tag--gold">METODOLOGIA</span>
+                <span class="cred-val" id="barber-specialty-2">Atendimento Solo 1-on-1</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-content">
+            <div class="section-header__tag">
+              <span class="mono-tag mono-tag--gold">04 / O BARBEIRO</span>
+            </div>
+
+            <h2 class="about-heading">
+              RUI.<br>
+              A ARTE DO CORTE<br>
+              INDIVIDUALIZADO.
+            </h2>
+
+            <div class="about-quote-box">
+              <blockquote class="about-quote">
+                "Cada corte é tratado como uma peça única. O meu compromisso é encontrar o equilíbrio exato entre a
+                geometria do teu rosto e o teu estilo pessoal."
+              </blockquote>
+              <span class="about-quote-author mono-tag mono-tag--gold">— RUI, FUNDADOR & BARBEIRO</span>
+            </div>
+
+            <div class="about-body">
+              <p>
+                Como barbeiro solo, optei por quebrar o ritmo impessoal das barbearias convencionais de grande volume.
+                Aqui não há filas de espera ruidosas nem pressa para passar ao próximo cliente.
+              </p>
+              <p>
+                Combino formação contínua nas técnicas mais avançadas de tesoura, fades modernos e barboterapia
+                tradicional. Cada marcação é um momento reservado para cuidar da tua imagem com calma, precisão e
+                respeito pelo teu tempo.
+              </p>
+            </div>
+
+            <div class="about-signature-row">
+              <div class="sig-badge">
+                <span class="sig-title">ATELIER PRIVADO</span>
+                <span class="sig-desc">Ambiente intimista & exclusivo</span>
+              </div>
+              <a href="marcar.html" class="btn btn--gold">
+                <span>CONHECER O ESPAÇO</span>
+                <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M3.333 8h9.334M8.667 4l4 4-4 4" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BIG BOOKING CTA -->
+    <section class="section cta-section" id="agendar">
+      <div class="cta-watermark">
+        <img src="./assets/logo-512.webp" alt="" aria-hidden="true">
+      </div>
+      <div class="container cta-content">
+        <span class="mono-tag mono-tag--gold">ESTÁ NA HORA DE RENOVAR O VISUAL</span>
+
+        <h2 class="cta-heading">
+          READY FOR YOUR<br>
+          NEXT CUT?
+        </h2>
+
+        <p class="cta-sub">
+          Escolhe o teu serviço, seleciona o melhor dia no calendário e garante a tua marcação exclusiva com o Rui.
+        </p>
+
+        <div class="cta-actions">
+          <a href="marcar.html" class="btn btn--gold btn--lg">
+            <span>MARCAR NO CALENDÁRIO</span>
+            <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M3.333 8h9.334M8.667 4l4 4-4 4" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="cta-guarantee">
+          <span class="mono-tag mono-tag--muted">SEM TEMPO DE ESPERA · ATENDIMENTO PONTUAL GARANTIDO</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT & LOCATION -->
+    <section class="section section--light" id="contacto">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header__tag">
+            <span class="mono-tag">05 / LOCALIZAÇÃO & HORÁRIOS</span>
+          </div>
+          <h2 class="section-title">ONDE ENCONTRAR O RUI.</h2>
+          <p class="section-subtitle">
+            Atendimento privado e exclusivo na Madeira. Para dúvidas ou situações urgentes, contacta diretamente por
+            telefone.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-cards-col">
+            <div class="contact-card">
+              <div class="contact-card__icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div class="contact-card__body">
+                <span class="mono-tag mono-tag--muted">LOCALIZAÇÃO</span>
+                <h3 class="contact-card__title">Barber Studio</h3>
+                <p class="contact-card__val">
+                  Atendimento Privado & Exclusivo<br>
+                  Madeira, Portugal
+                </p>
+                <a href="https://www.google.com/maps/search/Madeira,+Portugal" target="_blank" rel="noopener"
+                  class="card-action-link" data-real-maps>
+                  <span>Abrir no Google Maps</span>
+                  <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M3.333 8h9.334M8.667 4l4 4-4 4" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-card__icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              </div>
+              <div class="contact-card__body">
+                <span class="mono-tag mono-tag--muted">HORÁRIO DE ATENDIMENTO</span>
+                <h3 class="contact-card__title">Disponibilidade Semanal</h3>
+                <ul class="schedule-list">
+                  <li><span>Segunda a Sexta</span> <strong>17:30 — 21:00</strong></li>
+                  <li><span>Sábado</span> <strong>09:00 — 18:00</strong></li>
+                  <li><span>Domingo</span> <strong>17:00 — 21:00</strong></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-card__icon">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+              </div>
+              <div class="contact-card__body">
+                <span class="mono-tag mono-tag--muted">CONTACTO DIRETO</span>
+                <h3 class="contact-card__title">Telefone & Redes Sociais</h3>
+                <p class="contact-card__val">
+                  <a href="tel:+351900000000" class="contact-tel-link" data-real-phone>+351 900 000 000</a>
+                </p>
+                <div class="social-pills">
+                  <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="social-pill"
+                    data-real-instagram>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                    </svg>
+                    <span>@barberstudio.demo</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="map-container">
+            <div class="map-visual" id="map-visual">
+              <div class="map-loading" style="display: flex; align-items: center; justify-content: center; height: 100%; background: var(--color-black-elevated);">
+                <span class="mono-tag mono-tag--gold">A CARREGAR MAPA...</span>
+              </div>
+              <iframe id="map-iframe" title="Localização — Barber Studio, Madeira"
+                width="100%" height="100%"
+                style="border:0; display: none;"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+              <div class="map-overlay-card">
+                <div class="map-overlay-header">
+                  <img src="./assets/logo-128.webp" alt="AF Logo" width="28" height="28">
+                  <div>
+                    <strong>Barber Studio</strong>
+                    <span>Madeira · Portugal</span>
+                  </div>
+                </div>
+                <a href="#" id="map-open-link" target="_blank" rel="noopener"
+                  class="btn btn--gold btn--sm">
+                  ABRIR NO GOOGLE MAPS
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div class="footer-brand-col">
+        <a href="#hero" class="brand brand--footer">
+          <img src="./assets/logo-128.webp" alt="AF Logo" class="brand__logo" width="36" height="36">
+          <div class="brand__text-group">
+            <span class="brand__name">BARBER STUDIO</span>
+            <span class="brand__sub">PRECISION BARBERING</span>
+          </div>
+        </a>
+        <p class="footer-desc">
+          Atendimento a solo e exclusivo. A união de técnica moderna com o conforto da barbearia clássica.
+        </p>
+      </div>
+
+      <div class="footer-links-col">
+        <span class="mono-tag mono-tag--muted">NAVEGAÇÃO</span>
+        <ul class="footer-links">
+          <li><a href="#hero">Início</a></li>
+          <li><a href="#servicos">Serviços & Preços</a></li>
+          <li><a href="#experiencia">A Experiência</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#sobre">Sobre o Rui</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <span class="mono-tag mono-tag--muted">RESERVA</span>
+        <ul class="footer-links">
+          <li><a href="marcar.html">Agendar Online</a></li>
+          <li><a href="cliente.html">Área de Cliente</a></li>
+          <li><a href="login.html">Iniciar Sessão</a></li>
+          <li><a href="politica-privacidade.html">Política de Privacidade</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-booking-col">
+        <span class="mono-tag mono-tag--gold">RESERVA DIRETA</span>
+        <p class="footer-booking-text">Pronto para o teu próximo corte? Escolhe o teu horário online em segundos.</p>
+        <a href="marcar.html" class="btn btn--gold btn--full">
+          MARCAR AGENDAMENTO
+        </a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p class="copyright">
+        © <span id="year-placeholder">2026</span> Barber Studio. Todos os direitos reservados.
+      </p>
+      <div class="footer-meta-tags">
+        <span class="mono-tag mono-tag--muted">SOLO ARTISAN</span>
+        <span class="mono-tag mono-tag--muted">CRAFTED WITH PRECISION</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX: fotos da galeria em cartas que se deslizam para os lados -->
+  <div class="lightbox-backdrop" id="lightbox-modal" aria-hidden="true" role="dialog"
+    aria-label="Galeria de fotos">
+    <div class="lb-topbar">
+      <span class="mono-tag mono-tag--gold" id="lightbox-counter">1 / 1</span>
+      <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Fechar galeria">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="lb-track" id="lightbox-track"></div>
+
+    <button type="button" class="lb-nav lb-nav--prev" id="lightbox-prev" aria-label="Foto anterior">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6" /></svg>
+    </button>
+    <button type="button" class="lb-nav lb-nav--next" id="lightbox-next" aria-label="Foto seguinte">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6" /></svg>
+    </button>
+
+    <div class="lb-dots" id="lightbox-dots" aria-hidden="true"></div>
+  </div>
+
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <script src="js/components/loader.js"></script>
+  <script type="module" src="js/pages/public.js"></script>
+  <script type="module" src="js/components/privacyNotice.js"></script>
+  <script type="module" src="js/components/passwordRecovery.js"></script>
+</body>
+
+</html>

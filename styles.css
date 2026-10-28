@@ -1,0 +1,22 @@
+/* ==========================================================================
+   BARBER STUDIO — SOLO BARBER ATELIER
+   Master Stylesheet Importer
+   ========================================================================== */
+
+/* 1. Tokens e Base */
+@import url('css/base/variables.css');
+@import url('css/base/reset.css');
+
+/* 2. Componentes Universais */
+@import url('css/components/buttons.css');
+@import url('css/components/header.css');
+@import url('css/components/footer.css');
+@import url('css/components/modals.css');
+@import url('css/components/feedback.css');
+
+/* 3. Estilos Específicos de Páginas */
+@import url('css/pages/home.css');
+@import url('css/pages/booking.css');
+@import url('css/pages/auth.css');
+@import url('css/pages/portal.css');
+@import url('css/pages/legal.css');

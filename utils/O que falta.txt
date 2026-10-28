@@ -1,0 +1,11 @@
+Personalização do site completo por parte do barbeiro
+Foto de perfil para todos os utilizadores (barbeiro admin e povo)
+Esconder saldo (pagamento)
+Interações com o site
+Animações nos botões e no scroll
+Melhorar o design do site^
+Google maps a funcionar
+
+
+admins podem gerir os clientes e a galeria
+O Rui gere o site todo

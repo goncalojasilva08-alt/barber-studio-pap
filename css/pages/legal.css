@@ -1,0 +1,164 @@
+/* ==========================================================================
+   PRIVACIDADE — página da política, rodapé curto e caixa de aceitação
+   ========================================================================== */
+
+/* --- PÁGINA DA POLÍTICA --- */
+body.legal-page {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.legal-wrapper {
+    flex: 1;
+    padding-top: clamp(2.5rem, 5vw, 4.5rem);
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.legal-content {
+    max-width: 680px;
+}
+
+.legal-updated {
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.legal-block {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--color-gray-border-dark);
+}
+
+.legal-block h2 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0.5rem 0 0.75rem;
+}
+
+.legal-block p,
+.legal-block li {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--color-gray-soft);
+}
+
+.legal-block p + p,
+.legal-block ul + p {
+    margin-top: 0.75rem;
+}
+
+.legal-block ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+}
+
+.legal-block li {
+    position: relative;
+    padding-left: 1.1rem;
+}
+
+.legal-block li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 5px;
+    height: 1px;
+    background-color: var(--color-gold);
+}
+
+.legal-block strong {
+    color: var(--color-white);
+    font-weight: 500;
+}
+
+.legal-block a,
+.form-consent a {
+    color: var(--color-gold);
+    transition: color var(--transition-fast);
+}
+
+.legal-block a:hover,
+.form-consent a:hover {
+    color: var(--color-gold-hover);
+}
+
+/* --- RODAPÉ CURTO (páginas sem o rodapé completo) --- */
+.site-footer--slim {
+    padding-top: 0;
+    padding-bottom: 1.75rem;
+}
+
+.site-footer--slim .footer-bottom {
+    padding-top: 1.5rem;
+}
+
+.site-footer--slim .mono-tag {
+    color: var(--color-gray-subtle);
+    letter-spacing: 0.08em;
+    transition: color var(--transition-fast);
+}
+
+.site-footer--slim .mono-tag:hover {
+    color: var(--color-gold);
+}
+
+/* --- CAIXA DE ACEITAÇÃO NO REGISTO --- */
+.form-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: var(--text-small);
+    line-height: 1.5;
+    color: var(--color-gray-soft);
+    cursor: pointer;
+}
+
+.form-consent__input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
+.form-consent__box {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: 0.1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-gray-border-dark-hover);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-black-pure);
+    color: var(--color-black-pure);
+    transition: background-color var(--transition-base), border-color var(--transition-base);
+}
+
+.form-consent__box svg {
+    width: 0.8rem;
+    height: 0.8rem;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.form-consent__input:checked + .form-consent__box {
+    background-color: var(--color-gold);
+    border-color: var(--color-gold);
+}
+
+.form-consent__input:checked + .form-consent__box svg {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.form-consent__input:focus-visible + .form-consent__box {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+}

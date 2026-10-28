@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0C0C0C">
+  <link rel="manifest" href="manifest.webmanifest">
+  <title>Entrar — Barber Studio</title>
+  <meta name="description"
+    content="Inicia sessão na tua conta Barber Studio para gerir as tuas marcações e histórico.">
+
+  <!-- Página privada: nunca deve aparecer nos motores de busca -->
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="auth-page">
+
+  <!-- Sticky Minimalist Header Universal -->
+  <header class="site-header" id="site-header">
+    <div class="container site-header__inner">
+      <!-- Marca / Logótipo -->
+      <a href="index.html" class="brand" aria-label="Página Inicial">
+        <img src="./assets/logo-128.webp" alt="AF Monograma" class="brand__logo" width="40" height="40">
+        <div class="brand__text-group">
+          <span class="brand__name">BARBER STUDIO</span>
+          <span class="brand__sub">SOLO BARBER</span>
+        </div>
+      </a>
+
+      <!-- Menu Desktop Universal -->
+      <nav class="site-nav" aria-label="Navegação principal">
+        <ul class="nav-list">
+          <li><a href="index.html#servicos" class="nav-link">Serviços</a></li>
+          <li><a href="index.html#experiencia" class="nav-link">A Experiência</a></li>
+          <li><a href="index.html#galeria" class="nav-link">Galeria</a></li>
+          <li><a href="index.html#sobre" class="nav-link">O Barbeiro</a></li>
+          <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <!-- Ações do Cabeçalho -->
+      <div class="header-actions">
+        <!-- Slot de Sessão (preenchido dinamicamente pelo nav.js) -->
+        <div id="nav-auth-slot"></div>
+
+        <!-- Botão Principal de Agendamento -->
+        <a href="marcar.html" class="btn btn--gold btn--sm">
+          <span class="btn-text-desktop">MARCAR AGORA</span>
+          <svg class="icon icon-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3.333 8h9.334M8.667 4l4 4-4 4" />
+          </svg>
+        </a>
+
+        <!-- Botão Menu Mobile -->
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-label="Menu">
+          <span class="menu-toggle__bar"></span>
+          <span class="menu-toggle__bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Gaveta de Navegação Mobile -->
+    <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+      <div class="mobile-drawer__inner">
+        <span class="mono-tag mono-tag--muted">NAVEGAÇÃO DO ATELIER</span>
+        <ul class="mobile-nav-list">
+          <li><a href="index.html#servicos" class="mobile-nav-link"><span>01</span> Serviços & Preços</a></li>
+          <li><a href="index.html#experiencia" class="mobile-nav-link"><span>02</span> A Experiência</a></li>
+          <li><a href="index.html#galeria" class="mobile-nav-link"><span>03</span> Galeria Lookbook</a></li>
+          <li><a href="index.html#sobre" class="mobile-nav-link"><span>04</span> O Barbeiro</a></li>
+          <li><a href="index.html#contacto" class="mobile-nav-link"><span>05</span> Contacto & Localização</a></li>
+        </ul>
+
+        <div class="mobile-drawer__footer">
+          <!-- Ações de Conta no Mobile (preenchido dinamicamente) -->
+          <div id="drawer-auth-slot"></div>
+
+          <a href="marcar.html" class="btn btn--gold btn--full">MARCAR AGENDAMENTO</a>
+
+          <div class="mobile-drawer__meta">
+            <a href="tel:+351900000000" class="meta-item">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              <span>+351 900 000 000</span>
+            </a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="meta-item">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+              </svg>
+              <span>@barberstudio.demo</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-wrapper">
+    <div class="auth-watermark">
+      <img src="./assets/logo-512.webp" alt="" aria-hidden="true">
+    </div>
+
+    <div class="auth-card">
+      <div class="auth-header">
+        <img src="./assets/logo-192.webp" alt="AF Logo" class="auth-logo" width="52" height="52">
+        <h1 class="auth-title">INICIAR SESSÃO</h1>
+        <p class="auth-subtitle">Acede à tua área de marcações ou gestão do atelier.</p>
+      </div>
+
+      <!-- Social Logins (Google) -->
+      <div class="auth-social-group">
+        <button type="button" class="btn-social" id="google-login-btn">
+          <svg class="btn-social-icon" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+          </svg>
+          <span>Continuar com a Google</span>
+        </button>
+      </div>
+
+      <div class="auth-divider">
+        <span>OU CONTINUAR COM EMAIL</span>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" class="auth-form">
+        <div class="form-group">
+          <label class="form-label" for="login-email">EMAIL OU NOME</label>
+          <input type="text" id="login-email" name="email" class="form-input" placeholder="o-teu-email@exemplo.com"
+            required autocomplete="username" autocapitalize="none" spellcheck="false">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="login-password">PASSWORD</label>
+          <input type="password" id="login-password" name="password" class="form-input" placeholder="••••••••" required
+            autocomplete="current-password">
+        </div>
+
+        <div class="auth-footer-links">
+          <button type="button" id="forgot-pw-btn" class="text-link">Esqueci-me da password</button>
+        </div>
+
+        <button type="submit" class="btn btn--gold btn--full" id="login-submit-btn" style="margin-top: 0.5rem;">
+          <span>ENTRAR</span>
+          <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3.333 8h9.334M8.667 4l4 4-4 4" />
+          </svg>
+        </button>
+      </form>
+
+      <div class="auth-bottom-text">
+        <span>Ainda não tens conta?</span>
+        <a href="registo.html">CRIAR CONTA</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Forgot Password Modal -->
+  <div class="modal-backdrop" id="forgot-modal" aria-hidden="true" role="dialog">
+    <div class="modal-card" style="max-width: 440px;">
+      <div class="modal-header">
+        <h2 class="modal-title">RECUPERAR PASSWORD</h2>
+        <button type="button" class="modal-close-btn" id="close-forgot-modal" aria-label="Fechar">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <form id="forgot-form" class="booking-form">
+        <p class="section-subtitle" style="font-size: 0.875rem;">Introduz o teu email para simular o envio de instruções
+          de recuperação.</p>
+        <div class="form-group">
+          <label class="form-label" for="forgot-email">EMAIL REGISTADO</label>
+          <input type="email" id="forgot-email" class="form-input" placeholder="cliente@test.com" required>
+        </div>
+        <button type="submit" class="btn btn--gold btn--full">ENVIAR INSTRUÇÕES</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer site-footer--slim">
+    <div class="container footer-bottom">
+      <p class="copyright">© 2026 Barber Studio</p>
+      <a href="politica-privacidade.html" class="mono-tag">POLÍTICA DE PRIVACIDADE</a>
+    </div>
+  </footer>
+
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <script src="js/components/loader.js"></script>
+
+  <script type="module" src="js/pages/auth.js"></script>
+  <script type="module" src="js/components/nav.js"></script>
+  <script type="module" src="js/components/privacyNotice.js"></script>
+</body>
+
+</html>

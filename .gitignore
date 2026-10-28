@@ -1,0 +1,48 @@
+# ==============================================================================
+# Barber Studio — .gitignore
+# Never commit secrets, credentials, or local environment files.
+# ==============================================================================
+
+# --- Environment & Secrets ---
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials/
+
+# --- Node ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- Build Outputs ---
+dist/
+build/
+.cache/
+.parcel-cache/
+
+# --- OS & Editor ---
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/settings.json
+.idea/
+
+# --- Supabase ---
+# supabase/.branches/ is safe; do NOT commit service_role keys
+supabase/.env
+
+# --- Logs ---
+*.log
+logs/
+
+# --- Claude Code (config local) ---
+.claude/
+
+# Ficheiros de referência local (nunca publicar)
+supabase/estrutura-*.json
