@@ -135,8 +135,9 @@ export const galleryService = {
     if (!SUPABASE_ENABLED || !supabase) throw new Error('Supabase não está configurado.');
 
     // SE O ID NÃO FOR UM UUID (ex: 'def-5'), É UMA FOTO MODELO:
-    // Cria um registo real no Supabase (INSERT) em vez de falhar no UPDATE
+    // Passa as outras fotos modelo para a BD (senão desapareciam) e cria a editada
     if (!isUUID(id)) {
+      await this.materializeDefaults(id);
       return await this.addItem({
         title: updates.title || updates.description,
         category: updates.category,
@@ -163,11 +164,39 @@ export const galleryService = {
     return mapGalleryItem(data);
   },
 
+  // Copia as fotos modelo para a tabela galeria (exceto excludeId),
+  // só se a tabela ainda estiver vazia.
+  async materializeDefaults(excludeId) {
+    const { count, error: countError } = await supabase
+      .from('galeria')
+      .select('id', { count: 'exact', head: true });
+    if (countError) throw new Error(countError.message || 'Erro ao ler a galeria.');
+    if (count > 0) return;
+
+    const rows = DEFAULT_GALLERY_ITEMS
+      .filter(item => item.id !== excludeId)
+      .map(item => ({
+        imagem_url: item.imageUrl,
+        titulo: item.title,
+        descricao: item.description,
+        categoria: item.category,
+        tipo_layout: item.layoutType
+      }));
+    if (rows.length === 0) return;
+
+    const { error } = await supabase.from('galeria').insert(rows);
+    if (error) throw new Error(error.message || 'Erro ao guardar a galeria.');
+  },
+
   async deleteItem(id) {
     if (!SUPABASE_ENABLED || !supabase) throw new Error('Supabase não está configurado.');
 
-    // Se for uma foto modelo (não é UUID), não está na BD, apenas retorna sucesso
+    // Foto modelo (não é UUID): não existe na BD. Enquanto a BD estiver vazia o site
+    // mostra sempre as fotos modelo, por isso "remover" não fazia nada.
+    // Solução: passar as restantes fotos modelo para a BD; a partir daí a galeria
+    // passa a vir da BD e a foto removida deixa de aparecer.
     if (!isUUID(id)) {
+      await this.materializeDefaults(id);
       return true;
     }
 
