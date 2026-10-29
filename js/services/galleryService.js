@@ -94,7 +94,9 @@ export const galleryService = {
         .select('*')
         .order('criado_em', { ascending: true });
 
-      if (error || !data || data.length === 0) {
+      // Fotos modelo só quando a BD falha. Se a BD responde sem fotos, a galeria
+      // fica mesmo vazia (senão, ao remover todas, as fotos modelo voltavam).
+      if (error || !data) {
         return DEFAULT_GALLERY_ITEMS;
       }
 
