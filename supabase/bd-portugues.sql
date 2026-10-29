@@ -57,6 +57,8 @@ CREATE TABLE public.marcacoes (
   id                  UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   cliente_id          UUID REFERENCES public.perfis(id) ON DELETE SET NULL,
   servico_id          UUID REFERENCES public.servicos(id) ON DELETE SET NULL,
+  servico_nome        TEXT,                           -- cópia do nome no momento da marcação
+  preco               NUMERIC,                        -- cópia do preço no momento da marcação
   data                DATE NOT NULL,
   hora                TEXT NOT NULL DEFAULT '09:30',
   estado              TEXT NOT NULL DEFAULT 'PENDENTE'

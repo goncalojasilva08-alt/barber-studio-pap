@@ -39,8 +39,10 @@ function mapAppointment(a) {
     clientPhone: prof.telemovel || '',
     clientEmail: prof.email || '',
     serviceId: a.servico_id,
-    serviceName: srv.nome || 'Serviço',
-    price: Number(srv.preco || 0),
+    // Nome e preço guardados na própria marcação (no momento em que foi feita),
+    // para a faturação não mudar se o serviço for apagado ou mudar de preço
+    serviceName: a.servico_nome || srv.nome || 'Serviço',
+    price: Number(a.preco ?? srv.preco ?? 0),
     duration: `${durationMin} min`,
     duration_minutes: durationMin,
     date: cleanDate,
