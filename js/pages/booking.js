@@ -10,10 +10,7 @@ import { emailService } from '../services/emailService.js';
 import { Toast } from '../core/toast.js';
 import { cleanPhone, setupPhoneInput, escapeHtml, formatDateLocalISO, isPlausiblePhone, FAKE_PHONE_MESSAGE } from '../core/utils.js';
 
-let activeServices = [
-  { id: 'srv-1', name: 'Corte', price: 7, duration: '30 min', category: 'CORTE', description: 'Consultoria de estilo e corte de precisão.' },
-  { id: 'srv-2', name: 'Corte + Barba', price: 10, duration: '50 min', category: 'EXPERIÊNCIA COMPLETA', description: 'Corte de precisão combinado com acabamento de barba à navalha.', featured: true }
-];
+let activeServices = [];
 let currentUser = null;
 let currentStep = 1;
 
@@ -71,13 +68,12 @@ async function syncDatabaseData() {
 
   try {
     const fetched = await serviceCatalog.getActiveServices();
-    if (fetched && fetched.length > 0) {
-      activeServices = fetched;
-      renderServices();
-    }
+    activeServices = Array.isArray(fetched) ? fetched : [];
   } catch (e) {
-    console.warn('A usar serviços predefinidos.');
+    console.warn('Não foi possível carregar os serviços.', e);
+    activeServices = [];
   }
+  renderServices();
 
   try {
     currentUser = await authService.getCurrentUser();
@@ -168,6 +164,11 @@ function closeAuthModal() {
 function renderServices() {
   const container = document.getElementById('booking-services-list');
   if (!container) return;
+
+  if (activeServices.length === 0) {
+    container.innerHTML = '<p class="booking-empty">De momento não há serviços disponíveis para marcação.</p>';
+    return;
+  }
 
   container.innerHTML = activeServices.map((s, i) => `
     <div class="service-select-card ${bookingState.serviceId === s.id ? 'is-selected' : ''}" data-service-id="${escapeHtml(s.id)}" role="button" tabindex="0" style="--i: ${i};">
