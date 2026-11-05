@@ -425,6 +425,18 @@
             placeholder="Descrição para os clientes no website..." required></textarea>
         </div>
 
+        <div class="form-group">
+          <label class="form-label" for="srv-photo-input">FOTO DO SERVIÇO (OPCIONAL)</label>
+          <input type="hidden" id="srv-photo-url">
+          <div class="srv-photo-field">
+            <img id="srv-photo-preview" class="srv-photo-preview" alt="Foto do serviço" hidden>
+            <label class="btn btn--outline srv-photo-btn" for="srv-photo-input" id="srv-photo-label">ESCOLHER FOTO</label>
+            <input type="file" id="srv-photo-input" accept="image/jpeg,image/png,image/webp" hidden>
+            <button type="button" class="btn btn--outline" id="srv-photo-remove" hidden>REMOVER</button>
+          </div>
+          <p style="margin-top: 0.5rem; font-size: 0.8125rem; color: var(--color-gray-soft);">Aparece nos passos da marcação, ao lado do serviço.</p>
+        </div>
+
         <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1rem;">
           <button type="button" class="btn btn--outline" id="abort-service-btn">CANCELAR</button>
           <button type="submit" class="btn btn--gold">GUARDAR SERVIÇO</button>

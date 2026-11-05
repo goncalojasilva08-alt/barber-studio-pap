@@ -29,6 +29,7 @@ function mapService(s) {
     description: s.descricao || (s.nome?.toLowerCase().includes('barba')
       ? 'Corte de cabelo completo combinado com alinhamento e acabamento de barba à navalha.'
       : 'Consultoria de estilo, corte de precisão à tesoura ou máquina e finalização personalizada.'),
+    imageUrl: s.imagem_url || '',
     active: s.ativo !== false,
     // Os selos são atribuídos automaticamente em getActiveServices()
     featured: false,
@@ -130,7 +131,7 @@ export const serviceCatalog = {
     return mapService(data);
   },
 
-  async addService({ name, category, price, duration, description, featured = false, active = true }) {
+  async addService({ name, category, price, duration, description, imageUrl = '', featured = false, active = true }) {
     if (!SUPABASE_ENABLED || !supabase) {
       throw new Error('Supabase não está configurado.');
     }
@@ -142,6 +143,7 @@ export const serviceCatalog = {
       preco: Number(price),
       duracao_minutos: durationMin,
       descricao: description ? description.trim() : '',
+      imagem_url: imageUrl || null,
       destaque: Boolean(featured),
       ativo: active !== false
     };
@@ -186,6 +188,7 @@ export const serviceCatalog = {
       dbUpdates.duracao_minutos = parseDurationMinutes(updates.duration || updates.duration_minutes);
     }
     if (updates.description !== undefined) dbUpdates.descricao = updates.description.trim();
+    if (updates.imageUrl !== undefined) dbUpdates.imagem_url = updates.imageUrl || null;
     if (updates.featured !== undefined) dbUpdates.destaque = Boolean(updates.featured);
     if (updates.active !== undefined) dbUpdates.ativo = Boolean(updates.active);
 

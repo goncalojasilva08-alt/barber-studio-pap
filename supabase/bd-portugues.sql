@@ -49,6 +49,7 @@ CREATE TABLE public.servicos (
   duracao_minutos  INTEGER NOT NULL DEFAULT 30,
   ativo            BOOLEAN NOT NULL DEFAULT true,
   destaque         BOOLEAN NOT NULL DEFAULT false,
+  imagem_url       TEXT,                           -- foto mostrada na marcação
   criado_em        TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
@@ -57,6 +58,7 @@ CREATE TABLE public.marcacoes (
   id                  UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   cliente_id          UUID REFERENCES public.perfis(id) ON DELETE SET NULL,
   servico_id          UUID REFERENCES public.servicos(id) ON DELETE SET NULL,
+  barbeiro_id         UUID REFERENCES public.perfil_barbeiro(id) ON DELETE SET NULL,
   servico_nome        TEXT,                           -- cópia do nome no momento da marcação
   preco               NUMERIC,                        -- cópia do preço no momento da marcação
   data                DATE NOT NULL,
@@ -70,6 +72,7 @@ CREATE TABLE public.marcacoes (
 );
 
 -- Nunca duas marcações ativas no mesmo dia e hora
+CREATE INDEX marcacoes_barbeiro ON public.marcacoes (barbeiro_id);
 CREATE UNIQUE INDEX marcacoes_hora_unica ON public.marcacoes (data, hora) WHERE estado <> 'CANCELADA';
 
 -- Fotos da galeria (lookbook)
@@ -195,6 +198,21 @@ $$;
 CREATE TRIGGER proteger_tipo_utilizador
   BEFORE INSERT OR UPDATE ON public.perfis
   FOR EACH ROW EXECUTE FUNCTION public.proteger_tipo_utilizador();
+
+-- Cada marcação nova fica com o barbeiro do estúdio (só há um)
+CREATE FUNCTION public.atribuir_barbeiro() RETURNS TRIGGER
+LANGUAGE plpgsql SECURITY DEFINER SET search_path = public AS $$
+BEGIN
+  IF NEW.barbeiro_id IS NULL THEN
+    SELECT id INTO NEW.barbeiro_id FROM public.perfil_barbeiro ORDER BY criado_em LIMIT 1;
+  END IF;
+  RETURN NEW;
+END;
+$$;
+
+CREATE TRIGGER atribuir_barbeiro
+  BEFORE INSERT ON public.marcacoes
+  FOR EACH ROW EXECUTE FUNCTION public.atribuir_barbeiro();
 
 -- Regras de marcação: sem sobreposições e no máximo 2 marcações ativas por cliente
 CREATE FUNCTION public.verificar_regras_marcacao() RETURNS TRIGGER

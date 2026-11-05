@@ -766,22 +766,63 @@ function initServiceModals() {
     const price = document.getElementById('srv-price')?.value;
     const duration = document.getElementById('srv-duration')?.value;
     const description = document.getElementById('srv-desc')?.value;
+    const imageUrl = document.getElementById('srv-photo-url')?.value || '';
 
     try {
       if (editId) {
-        await serviceCatalog.updateService(editId, { name, category, price, duration, description });
+        await serviceCatalog.updateService(editId, { name, category, price, duration, description, imageUrl });
         Toast.success('Serviço atualizado!');
       } else {
-        await serviceCatalog.addService({ name, category, price, duration, description });
+        await serviceCatalog.addService({ name, category, price, duration, description, imageUrl });
         Toast.success('Novo serviço adicionado!');
       }
       closeModal();
       form.reset();
+      setServicePhoto('');
       await refreshAdminData();
     } catch (err) {
       Toast.error(err.message || 'Erro ao guardar serviço.');
     }
   });
+
+  // Foto do serviço: o barbeiro enquadra-a e ela é enviada para o Storage
+  const photoInput = document.getElementById('srv-photo-input');
+  const photoLabel = document.getElementById('srv-photo-label');
+  photoInput?.addEventListener('change', async () => {
+    const file = photoInput.files?.[0];
+    photoInput.value = '';
+    if (!file) return;
+    if (!file.type || !file.type.startsWith('image/')) {
+      Toast.error('O ficheiro tem de ser uma imagem.');
+      return;
+    }
+    const cropped = await openCropper(file, { aspect: 1, title: 'AJUSTAR FOTO DO SERVIÇO' });
+    if (!cropped) return;
+    try {
+      if (photoLabel) photoLabel.textContent = 'A ENVIAR...';
+      const publicUrl = await storageService.uploadImage(cropped, 'servicos');
+      setServicePhoto(publicUrl);
+      Toast.success('Foto pronta. Guarda o serviço para a publicar.');
+    } catch (err) {
+      Toast.error(err.message || 'Erro ao enviar a foto.');
+      setServicePhoto(document.getElementById('srv-photo-url')?.value || '');
+    }
+  });
+  document.getElementById('srv-photo-remove')?.addEventListener('click', () => setServicePhoto(''));
+}
+
+function setServicePhoto(url) {
+  const hidden = document.getElementById('srv-photo-url');
+  const preview = document.getElementById('srv-photo-preview');
+  const label = document.getElementById('srv-photo-label');
+  const removeBtn = document.getElementById('srv-photo-remove');
+  if (hidden) hidden.value = url || '';
+  if (preview) {
+    preview.hidden = !url;
+    if (url) preview.src = url; else preview.removeAttribute('src');
+  }
+  if (label) label.textContent = url ? 'TROCAR FOTO' : 'ESCOLHER FOTO';
+  if (removeBtn) removeBtn.hidden = !url;
 }
 
 function openServiceModal(service = null) {
@@ -804,10 +845,12 @@ function openServiceModal(service = null) {
     if (price) price.value = service.price;
     if (duration) duration.value = service.duration;
     if (description) description.value = service.description || '';
+    setServicePhoto(service.imageUrl || '');
   } else {
     if (titleEl) titleEl.textContent = 'NOVO SERVIÇO';
     if (editId) editId.value = '';
     document.getElementById('service-form')?.reset();
+    setServicePhoto('');
   }
 
   modal.classList.add('is-active');

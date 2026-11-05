@@ -175,6 +175,7 @@ function renderServices() {
       <span class="svc-radio" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </span>
+      ${s.imageUrl ? `<img class="svc-photo" src="${escapeHtml(s.imageUrl)}" alt="${escapeHtml(s.name)}" loading="lazy">` : ''}
       <div class="svc-body">
         <div class="svc-top">
           <strong class="svc-name">${escapeHtml(s.name)}</strong>
@@ -601,7 +602,8 @@ function renderSummary() {
 
   container.innerHTML = `
     <div class="summary-main">
-      <div>
+      ${s && s.imageUrl ? `<img class="summary-photo" src="${escapeHtml(s.imageUrl)}" alt="${escapeHtml(s.name)}">` : ''}
+      <div class="summary-text">
         <strong class="summary-service">${s ? escapeHtml(s.name) : ''}</strong>
         <span class="summary-meta">${s ? s.duration : ''}</span>
       </div>

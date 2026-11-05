@@ -1059,3 +1059,49 @@ body.booking-page {
         animation: none;
     }
 }
+
+/* --- Fotos dos serviços -------------------------------------------------- */
+.svc-photo {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-gray-border-dark);
+}
+
+.service-select-card.is-selected .svc-photo {
+    border-color: var(--color-gold);
+}
+
+.summary-photo {
+    flex-shrink: 0;
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+}
+
+.summary-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.srv-photo-field {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.srv-photo-preview {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-gray-border-dark);
+}
+
+.srv-photo-btn {
+    cursor: pointer;
+}
